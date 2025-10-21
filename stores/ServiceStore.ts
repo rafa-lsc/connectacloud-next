@@ -9,7 +9,7 @@ type ServiceState = {
   };
   isLoading: boolean;
   error: string | null;
-  loadServices: () => void;
+  loadServices: (service: Service[]) => void;
   addService: (service: Service) => void;
   updateService: (service: Service) => void;
   removeService: (id: string) => void;
