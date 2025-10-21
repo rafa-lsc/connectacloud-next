@@ -74,7 +74,6 @@ export default function Dashboard({ initialServices }: DashboardProps) {
             >
               <ServiceCard
                 service={service}
-                onClick={() => setSelectedService(service)}
               />
             </ErrorBoundary>
           ))
