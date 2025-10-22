@@ -11,7 +11,12 @@ import ServiceModal from "../ServiceModal/ServiceModal";
 import ErrorBoundary from "../Error/ErrorBoundary";
 import { Input } from "../ui/input";
 
-export default function Dashboard() {
+interface DashboardProps {
+  initialServices: Service[];
+}
+
+export default function Dashboard({ initialServices }: DashboardProps) {
+
   const allServices = useServiceStore((state) => state.services.allIds);
   const isLoading = useServiceStore((state) => state.isLoading);
   const error = useServiceStore((state) => state.error);
@@ -21,8 +26,8 @@ export default function Dashboard() {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   useEffect(() => {
-    loadServices();
-  }, [loadServices]);
+    loadServices(initialServices);
+  }, [initialServices, loadServices]);
 
   const filteredServices = useMemo(
     () =>
@@ -69,7 +74,6 @@ export default function Dashboard() {
             >
               <ServiceCard
                 service={service}
-                onClick={() => setSelectedService(service)}
               />
             </ErrorBoundary>
           ))
